@@ -1,2 +1,2 @@
-pyPdf2
+PyPDF2
 context_menu
