@@ -4,7 +4,7 @@ A tool that removes the margins from 8.5 x 11 inch PDFs exported from OneNote. I
 
 ## Important Notes
 
-The PDF must be exported using **Microsft Print to PDF**, **ADOBE PDF**, or any other **exporter that creates pages**. The resulting PDF should be centered horizontally and vertically aligned to the top.
+The PDF must be exported using **Microsft Print to PDF**, **Adobe PDF**, or any other **exporter that creates pages**. The resulting PDF should be centered horizontally and vertically aligned to the top.
  
 This cropper **does NOT work with PDFs exported by iOS**, because iOS will export a large single page PDF.
  
