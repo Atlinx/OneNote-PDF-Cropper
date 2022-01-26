@@ -1,37 +1,30 @@
 import os
 import sys
 from context_menu import menus
-from pdfrw import PdfReader, PdfWriter, PageMerge, IndirectPdfDict
+from PyPDF2 import PdfFileWriter, PdfFileReader
+from PyPDF2.pdf import PageObject
 
 def exec_menu_command(file_names, params):
   for file_name in file_names:
     if file_name.endswith('.pdf'):
-      input1 = PdfReader(file_name)
-      output = PdfWriter(f"{os.path.splitext(file_name)[0]}_cropped.pdf")
+      with open(file_name, "rb") as inputstream:
+        output = PdfFileWriter()
+        input1 = PdfFileReader(inputstream)
 
-      for page in input1.pages[1:]:
-        position = (72, 160)
-        dimensions = (8.5, 11.0)
-        pixel_height = 596
-        pixel_dim = (pixel_height * dimensions[0] / dimensions[1], pixel_height)
-        
-        info = PageMerge().add(page)
-        x1, y1, x2, y2 = info.xobj_box
-        viewrect = (
-          position[0],
-          position[1],
-          position[0] + pixel_dim[0],
-          position[1] + pixel_dim[1]
-        )
-        page = PageMerge().add(page, viewrect=info.xobj_box)
-        page.resources
-        page.cbox = viewrect
-        page[0].scale(1.4)
+        for page in input1.pages[1:]:
+          og_height = 596
+          target_size = (int(8.5*72), int(11*72))
+          scale_factor = target_size[1] / og_height
+          translation = (-72 * scale_factor, -160 * scale_factor)
+          
+          newPage = PageObject.createBlankPage(None, target_size[0], target_size[1])
+          newPage.mergeScaledTranslatedPage(page, scale_factor, translation[0], translation[1])
 
-        output.addpage(page.render())
+          output.addPage(newPage)
 
-      # finally, write "output" to document-output.pdf
-      output.write()
+        # finally, write "output" to document-output.pdf
+        with open(f"{os.path.splitext(file_name)[0]}_cropped.pdf", "wb") as output_stream:
+          output.write(output_stream)
   
 if __name__ == '__main__':
   fc = menus.FastCommand('Crop OneNote PDF', type='FILES', python=exec_menu_command)
