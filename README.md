@@ -1,4 +1,4 @@
-# ✂ iPad OneNote PDF Cropper
+# ✂ iPad OneNote PDF Cropper 📄
 
 A file context menu option for your computer that removes the margins from PDF that's exported from a OneNote page. It leaves you with an clean annotated PDF.
 
