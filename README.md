@@ -1,10 +1,10 @@
 # ✂ iPad OneNote PDF Cropper 📄
 
-A file context menu option for your computer that removes the margins from PDF that's exported from a OneNote page. It leaves you with an clean annotated PDF.
+A tool that removes the margins from 8.5 x 11 inch PDFs exported from OneNote. It's available as a right-click menu option when you right click a file. This works with Mac, Linux, and Windows.
 
 ## Important Notes
 
-The PDF must be exported using **Microsft Print to PDF on OneNote Windows** or any other **exporter that creates pages**. 
+The PDF must be exported using **Microsft Print to PDF**, **ADOBE PDF**, or any other **exporter that creates pages**. The resulting PDF should be centered horizontally and vertically aligned to the top.
  
 This cropper **does NOT work with PDFs exported by iOS**, because iOS will export a large single page PDF.
  
